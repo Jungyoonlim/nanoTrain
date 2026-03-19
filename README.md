@@ -10,6 +10,11 @@ nanoGPT teaches you pretraining, this shows you everything after!
 
 Every file maps directly to a paper. Every loss function includes the equation it implements. Every algorithm includes a plain-English explanation of what it's really doing, what breaks, and what to experiment with.
 
+
+## Further Reading
+
+
+
 ## License
  
 MIT
