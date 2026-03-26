@@ -1,6 +1,3 @@
-import torch 
-import torch.nn.functional as F
-
 """
 Supervised Fine-Tuning (SFT)
 Paper: Ouyang et al., "Training language models to follow instructions 
@@ -10,7 +7,21 @@ What is SFT?
 Given a high-quality response, make the model more likely to produce those exact tokens. 
 
 Loss = -1/T *  Σ log P(token_t | token_<t)
+
+
+=== Usage === 
+python sft.py                           # train on LIMA (default)
+python sft.py --dataset alpaca          # train on Alpaca
+python sft.py --max_steps 500 --lr 1e-5 # customize training
 """
+
+import torch 
+import torch.nn.functional as F 
+from torch.utils.data import DataLoader, Dataset 
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from datasets import load_dataset
+import argparse 
+import time 
 
 def simple_sft_loss(model, input_ids):
     """
@@ -29,3 +40,6 @@ def simple_sft_loss(model, input_ids):
     )
 
     return loss 
+
+
+# Data 

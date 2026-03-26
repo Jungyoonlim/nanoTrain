@@ -18,8 +18,8 @@ class RewardModel(nn.Module):
     def forward(self, input_ids):
         pass 
 
-def reward(model, linear_head, input_ids):
+def reward_loss(model, linear_head, input_ids):
+    r_chosen = 
+    r_rejected = 
 
-    logits = 
 
-    -torch.log(torch.sigmoid(reward(y_w) - reward(y_l))) 
