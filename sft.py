@@ -43,3 +43,27 @@ def simple_sft_loss(model, input_ids):
 
 
 # Data 
+class SFTDataset(Dataset):
+    """
+    
+    
+    """
+    def __init__(self, dataset_name="lima", tokenizer=None, max_length=512):
+        pass 
+
+
+    def __len__(self):
+        return len(self.examples)
+    
+    def 
+
+
+# Training Loop 
+
+
+
+
+# CLI 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="nanoTrain SFT")
+    
