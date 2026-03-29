@@ -1,0 +1,9 @@
+# Large model checkpoints
+checkpoints/*/model.safetensors
+checkpoints/*/pytorch_model.bin
+*.safetensors
+
+# Python
+__pycache__/
+*.pyc
+.env
