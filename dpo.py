@@ -3,6 +3,35 @@ import copy
 import torch
 import torch.nn.functional as F 
 
+"""
+Direct Preference Optimization (DPO)
+
+DPO trains a language model directly from preference pairs:
+
+Prompt
+Chosen response
+Rejected response 
+
+The goal is to make the policy model prefer the chosen response over the
+rejected response more strongly than a frozen reference model does. 
+
+For each preference pair, DPO computes:
+
+policy_log_ratio = log_π_policy(chosen | prompt) - log_π_policy(rejected | prompt)
+reference_log_ration = log_π_ref(chosen | prompt) - log_π_ref(rejected | prompt)
+
+The DPO loss is: 
+
+L_DPO =  -log σ(
+        beta * (policy_log_ratio - reference_log_ratio)
+    )
+
+Unlike trad RLHF, DPO does not train a separate reward model and does not require
+a RL optimizer such as PPO. The preference signal is applied directly through the lm's
+log probabilities. 
+
+Beta controls how strongly the policy is pushed away from the reference model. 
+"""
 def train_dpo(
     sft_model, 
     steps=200, 
@@ -40,4 +69,4 @@ def train_dpo(
         pi_c = response_logprobs(policy, c).sum(dim=1)
         pi_r = response_logprobs(policy, r).sum(dim=1)
 
-        
+
