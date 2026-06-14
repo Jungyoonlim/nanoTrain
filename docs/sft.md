@@ -25,16 +25,16 @@ This is just **cross-entropy loss** — for each token in the response, how surp
 
 ```bash
 # Quick test with built-in tiny dataset (no downloads needed)
-python sft.py --dataset tiny --max_steps 30 --batch_size 2
+python -m recipes.sft --dataset tiny --max_steps 30 --batch_size 2
 
 # Train on Stanford Alpaca (~52k instruction/response pairs)
-python sft.py --dataset alpaca --epochs 1
+python -m recipes.sft --dataset alpaca --epochs 1
 
 # Train on LIMA (1k high-quality examples, requires HF auth)
-python sft.py --dataset lima --epochs 3
+python -m recipes.sft --dataset lima --epochs 3
 
 # Customize training
-python sft.py --dataset alpaca --lr 1e-5 --batch_size 8 --max_steps 500 --device cuda
+python -m recipes.sft --dataset alpaca --lr 1e-5 --batch_size 8 --max_steps 500 --device cuda
 ```
 
 ### Arguments
@@ -73,6 +73,6 @@ The model checkpoint is saved to `checkpoints/sft/`.
 
 SFT teaches the model the *format* of good responses, but it doesn't teach it to *prefer* good responses over bad ones. That's what the rest of the pipeline does:
 
-1. **Reward Model** (`reward.py`) — learn a scoring function for response quality
-2. **DPO** (`dpo.py`) — align the model using preference pairs, no reward model needed
-3. **GRPO** (`grpo.py`) — RL-style alignment using group-relative scoring
+1. **Reward Model** (`recipes/reward.py`) — learn a scoring function for response quality
+2. **DPO** (`recipes/dpo.py`) — align the model using preference pairs, no reward model needed
+3. **GRPO** (`recipes/grpo.py`) — RL-style alignment using group-relative scoring

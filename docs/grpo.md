@@ -23,7 +23,7 @@ suppressed. The KL term keeps the policy near the reference.
 - `nanotrain/losses.py` — `grpo_advantages`, `grpo_loss`
 - `nanotrain/logprobs.py` — `sequence_log_probs`
 - `nanotrain/tiny_models.py` — `TinyGPT.generate` (sampling the group)
-- `grpo.py` — runnable demo
+- `recipes/grpo.py` — runnable demo
 
 ## What to experiment with
 

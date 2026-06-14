@@ -10,9 +10,9 @@ Loss = -1/T *  Σ log P(token_t | token_<t)
 
 
 === Usage === 
-python sft.py                           # train on LIMA (default)
-python sft.py --dataset alpaca          # train on Alpaca
-python sft.py --max_steps 500 --lr 1e-5 # customize training
+python -m recipes.sft                           # train on LIMA (default)
+python -m recipes.sft --dataset alpaca          # train on Alpaca
+python -m recipes.sft --max_steps 500 --lr 1e-5 # customize training
 """
 
 import torch 

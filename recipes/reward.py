@@ -8,7 +8,7 @@ Loss:               -log σ(r(y_w) - r(y_l))
 Train a scalar reward head so chosen responses score higher than rejected ones.
 
 === Usage ===
-python reward.py
+python -m recipes.reward
 """
 
 from nanotrain.losses import reward_bt_loss

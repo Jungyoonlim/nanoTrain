@@ -12,7 +12,7 @@ Positive-advantage completions get reinforced, negative ones suppressed; KL keep
 the policy near the reference.
 
 === Usage ===
-python grpo.py
+python -m recipes.grpo
 """
 
 import copy

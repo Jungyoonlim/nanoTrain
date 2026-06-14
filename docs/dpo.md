@@ -23,7 +23,7 @@ the SFT model, frozen.
 
 - `nanotrain/losses.py` — `dpo_loss`
 - `nanotrain/logprobs.py` — `sequence_log_probs` (response-only)
-- `dpo.py` — runnable demo
+- `recipes/dpo.py` — runnable demo
 
 ## What to experiment with
 

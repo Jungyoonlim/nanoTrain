@@ -23,7 +23,7 @@ Only the *difference* in rewards matters, so the absolute scale is arbitrary.
 
 - `nanotrain/losses.py` — `reward_bt_loss`
 - `nanotrain/tiny_models.py` — `TinyRewardModel` (backbone + scalar head)
-- `reward.py` — runnable demo
+- `recipes/reward.py` — runnable demo
 
 ## What to experiment with
 

@@ -27,7 +27,7 @@ cd nanoTrain
 uv sync
 
 # Run SFT on a tiny built-in dataset (no downloads, ~30 seconds)
-python sft.py --dataset tiny --max_steps 30 --batch_size 2
+python -m recipes.sft --dataset tiny --max_steps 30 --batch_size 2
 ```
 
 ## Install
@@ -46,10 +46,10 @@ Requires Python 3.10+ and PyTorch 2.0+.
 
 | Step | File | Paper | What it does |
 |------|------|-------|--------------|
-| 1. SFT | [`sft.py`](sft.py) | [InstructGPT (2022)](https://arxiv.org/abs/2203.02155) | Teach the model to follow instructions |
-| 2. Reward Model | [`reward.py`](reward.py) | [InstructGPT (2022)](https://arxiv.org/abs/2203.02155) | Learn a scoring function for response quality |
-| 3. DPO | [`dpo.py`](dpo.py) | [Rafailov et al. (2023)](https://arxiv.org/abs/2305.18290) | Align using preference pairs, no reward model needed |
-| 4. GRPO | [`grpo.py`](grpo.py) | [Shao et al. (2024)](https://arxiv.org/abs/2402.03300) | RL-style alignment with group-relative scoring |
+| 1. SFT | [`recipes/sft.py`](recipes/sft.py) | [InstructGPT (2022)](https://arxiv.org/abs/2203.02155) | Teach the model to follow instructions |
+| 2. Reward Model | [`recipes/reward.py`](recipes/reward.py) | [InstructGPT (2022)](https://arxiv.org/abs/2203.02155) | Learn a scoring function for response quality |
+| 3. DPO | [`recipes/dpo.py`](recipes/dpo.py) | [Rafailov et al. (2023)](https://arxiv.org/abs/2305.18290) | Align using preference pairs, no reward model needed |
+| 4. GRPO | [`recipes/grpo.py`](recipes/grpo.py) | [Shao et al. (2024)](https://arxiv.org/abs/2402.03300) | RL-style alignment with group-relative scoring |
 
 ## Experiment Results
 
@@ -68,16 +68,16 @@ The loss starts at ~12.3 (the model assigns roughly equal probability across its
 
 ```bash
 # Quick test (built-in, no download)
-python sft.py --dataset tiny --max_steps 30 --batch_size 2
+python -m recipes.sft --dataset tiny --max_steps 30 --batch_size 2
 
 # Full training on Alpaca (52k examples)
-python sft.py --dataset alpaca --epochs 1 --device cuda
+python -m recipes.sft --dataset alpaca --epochs 1 --device cuda
 
 # LIMA (1k curated examples, requires HF auth)
-python sft.py --dataset lima --epochs 3 --device cuda
+python -m recipes.sft --dataset lima --epochs 3 --device cuda
 
 # Custom hyperparameters
-python sft.py --dataset alpaca --lr 1e-5 --batch_size 8 --max_steps 500
+python -m recipes.sft --dataset alpaca --lr 1e-5 --batch_size 8 --max_steps 500
 ```
 
 See [`docs/sft.md`](docs/sft.md) for detailed explanation of the math and what to experiment with.
@@ -89,10 +89,12 @@ nanotrain/
   losses.py        # pure SFT/RM/DPO/GRPO losses (tensors in, scalar out)
   logprobs.py      # response-only sequence logprob helpers
   tiny_models.py   # tiny test models, no HuggingFace dependency
-sft.py             # runnable SFT demo
-reward.py          # runnable reward-modeling demo
-dpo.py             # runnable DPO demo
-grpo.py            # runnable GRPO demo
+recipes/
+  sft.py           # runnable SFT demo
+  reward.py        # runnable reward-modeling demo
+  dpo.py           # runnable DPO demo
+  grpo.py          # runnable GRPO demo
+  main.py          # inference: load a checkpoint and answer questions
 tests/             # per-algorithm property + code tests
 docs/              # detailed guides (sft, reward, dpo, grpo, rl_foundations)
 checkpoints/       # saved model weights (created during training)
