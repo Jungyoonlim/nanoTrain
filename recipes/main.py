@@ -18,9 +18,9 @@ and let it generate the rest. Use a different template and the model won't
 recognize the pattern it learned.
 
 === Usage ===
-python main.py "What is 2+2?"        # one-shot answer
-python main.py                       # interactive REPL
-python main.py --checkpoint gpt2     # use the base (un-tuned) model to compare
+python -m recipes.main "What is 2+2?"        # one-shot answer
+python -m recipes.main                       # interactive REPL
+python -m recipes.main --checkpoint gpt2     # use the base (un-tuned) model to compare
 """
 
 import argparse

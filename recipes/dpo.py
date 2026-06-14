@@ -13,7 +13,7 @@ No separate reward model, no PPO. beta controls how far the policy may drift fro
 the reference.
 
 === Usage ===
-python dpo.py
+python -m recipes.dpo
 """
 
 import copy
