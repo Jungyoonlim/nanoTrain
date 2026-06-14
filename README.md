@@ -85,14 +85,17 @@ See [`docs/sft.md`](docs/sft.md) for detailed explanation of the math and what t
 ## File Structure
 
 ```
-sft.py           # Supervised fine-tuning
-reward.py        # Bradley-Terry reward model
-dpo.py           # Direct Preference Optimization
-grpo.py          # Group Relative Policy Optimization
-compare.py       # Compare outputs across training stages
-tests/           # Mathematical property tests
-docs/            # Detailed guides for each algorithm
-checkpoints/     # Saved model weights (created during training)
+nanotrain/
+  losses.py        # pure SFT/RM/DPO/GRPO losses (tensors in, scalar out)
+  logprobs.py      # response-only sequence logprob helpers
+  tiny_models.py   # tiny test models, no HuggingFace dependency
+sft.py             # runnable SFT demo
+reward.py          # runnable reward-modeling demo
+dpo.py             # runnable DPO demo
+grpo.py            # runnable GRPO demo
+tests/             # per-algorithm property + code tests
+docs/              # detailed guides (sft, reward, dpo, grpo, rl_foundations)
+checkpoints/       # saved model weights (created during training)
 ```
 
 ## Tests
