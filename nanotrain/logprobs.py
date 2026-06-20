@@ -19,9 +19,15 @@ def token_log_probs(logits, input_ids):
     input_ids [B, T]
     returns   [B, T-1]   token_log_probs[b, t] = log P(input_ids[b, t+1] | <=t)
     """
-    # TODO: log_softmax, shift, gather the realized next-token logprob.
-    raise NotImplementedError
+    log_probs = F.log_softmax(logits, dim=-1)
 
+    shifted_log_probs = log_probs[:. :-1, :]
+    targets = input_ids[:, 1:]
+
+    return shifted_log_probs.gather(
+        dim=-1,
+        index=targets.unsqueeze(-1)
+    ).squeeze(-1)
 
 def sequence_log_probs(model, input_ids, response_mask=None, attention_mask=None, reduction="sum"):
     """
@@ -32,3 +38,4 @@ def sequence_log_probs(model, input_ids, response_mask=None, attention_mask=None
     """
     # TODO: forward pass -> token_log_probs -> mask -> reduce.
     raise NotImplementedError
+
